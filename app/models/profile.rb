@@ -18,4 +18,8 @@ class Profile < ActiveRecord::Base
       errors.add(:last_name, 'last name and first name cannot be null!')
     end
   end
+
+  def self.get_all_profiles(min, max)
+    Profile.where("birth_year BETWEEN :min_year AND :max_year", min_year: min, max_year: max).order(birth_year: :asc)
+  end
 end
